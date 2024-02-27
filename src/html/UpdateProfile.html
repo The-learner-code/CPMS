@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- === Providing the Title for the project === -->
+    <title>CPMS - Update Your Profile</title>
+    <!-- === Importing CSS File === -->
+    <link rel="stylesheet" href="/src/CSS/UpdateProfile.css">
+    <!-- === Importing JS File === -->
+    <script src="https://kit.fontawesome.com/228a6ce4bd.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="BackToHome">
+            <p>Update Your Profile</p>
+            <a href="/src/HTML/UserIndexPage.html">Back to Solutions Suite</a>
+        </div>
+        <div class="form-box">
+            <form>
+                <div class="input-group">
+                    <div class="input-field">
+                        <i class="fa-solid fa-envelope"></i>
+                        <input type="text" placeholder="Email Id" id="email_id" autocomplete="off">
+                    </div>
+                    <div class="input-field">
+                        <i class="fa-solid fa-registered"></i>
+                        <input type="text" placeholder="Register No" id="register" autocomplete="off">
+                    </div>
+                    <div class="input-field">
+                        <i class="fa-solid fa-user"></i>
+                        <input type="text" placeholder="Full Name" id="name" autocomplete="off">
+                    </div>
+                    <div class="input-field">
+                        <i class="fa-solid fa-layer-group"></i>
+                        <input type="text" placeholder="Batch - Enter Year Only" id="batch" autocomplete="off">
+                    </div>
+                    <div class="input-field">
+                        <i class="fa-solid fa-people-group"></i>
+                        <input type="text" placeholder="Department" id="dep" autocomplete="off">
+                    </div>
+                    <div class="input-field">
+                        <i class="fa-solid fa-book-open-reader"></i>
+                        <input type="text" placeholder="Pursusing Semester - Enter in Single digit No" id="psem" autocomplete="off">
+                    </div>
+                    <div class="input-field">
+                        <i class="fa-solid fa-user-graduate"></i>
+                        <input type="text" placeholder="CGPA - 0.0000" id="cgpa" autocomplete="off">
+                    </div>
+                    <div class="input-field">
+                        <i class="fa-solid fa-bookmark"></i>
+                        <input type="text" placeholder="Placement Status - Placed / Non-Placed" id="pstatus" autocomplete="off">
+                    </div>
+                </div>
+                <div class="btn-field">
+                    <button id="addbtn">Add</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script type="module">
+
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCmtr4RFpRZb6S6VV3rpdCGDdFLzAbHDMw",
+            authDomain: "cpms-fca1e.firebaseapp.com",
+            projectId: "cpms-fca1e",
+            storageBucket: "cpms-fca1e.appspot.com",
+            messagingSenderId: "763343437611",
+            appId: "1:763343437611:web:09cc7394b3d9c99389cf6e"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // Assigining the value to the variables
+        let Email_box = document.getElementById("email_id");
+        let Register_box = document.getElementById("register");
+        let Name_box = document.getElementById("name");
+        let Batch_box = document.getElementById("batch");
+        let Department_box = document.getElementById("dep");
+        let Pursusing_Semester_box = document.getElementById("psem");
+        let CGPA_box = document.getElementById("cgpa");
+        let Placement_Status_box = document.getElementById("pstatus");
+
+        const UserCreds = JSON.parse(sessionStorage.getItem("stu-user-creds"));
+        const docRef = doc(db, "StudentsInformation", UserCreds.email);
+
+        const AddingDoc = document.getElementById('addbtn')
+        AddingDoc.addEventListener('click', (e) => {
+            e.preventDefault()
+
+            if(UserCreds.email != Email_box.value){
+                alert("Login Email & Entered Email id are not in match..!")
+                window.location.reload();
+            }
+            else if((Register_box.value.trim()==="" || Register_box.value.trim()=== " " || Register_box.value.trim().length<10)){
+                alert("Register No should not be Empty or Blank or more than 10 digits...!")
+                window.location.reload();
+            }
+            else if(Name_box.value.trim()==="" || Name_box.value.trim()=== " "){
+                alert("Name should not be Empty or Blank...!");
+                window.location.reload();
+            }
+            else if(Batch_box.value.trim()==="" || Batch_box.value.trim()=== " " || Batch_box.value.trim().length<4 || Batch_box.value.trim().length>4){
+                alert("Batch should not be Empty or Blank or more/less than 4 digits...!");
+                window.location.reload();
+            }
+            else if(Department_box.value.trim()==="" || Department_box.value.trim()=== " "){
+                alert("Department should not be Empty or Blank...!");
+                window.location.reload();
+            }
+            else if(Pursusing_Semester_box.value.trim()==="" || Pursusing_Semester_box.value.trim()=== " " || Pursusing_Semester_box.value.trim().length<1 || Pursusing_Semester_box.value.trim().length>1){
+                alert("Pursusing_Semester should not be Empty or Blank or more/less than 1 digits...!");
+                window.location.reload();
+            }
+            else if(CGPA_box.value.trim()==="" || CGPA_box.value.trim()=== " " || CGPA_box.value.trim().length<6 || CGPA_box.value.trim().length>6){
+                alert("CGPA should not be Empty or Blank or more/less than 6 digit length...!");
+                window.location.reload();
+            }
+            else if(Placement_Status_box.value.trim()==="" || Placement_Status_box.value.trim()=== " "){
+                alert("Placement_Status should not be Empty or Blank or between mentioned two values...!");
+                window.location.reload();
+            }
+            else 
+            setDoc(docRef,{
+                RegisterNo: Register_box.value,
+                Name: Name_box.value,
+                Batch: Batch_box.value,
+                Department: Department_box.value,
+                PursusingSemester: Pursusing_Semester_box.value,
+                CGPA: CGPA_box.value,
+                PlacementStatus: Placement_Status_box.value
+            })
+            .then(() => {
+                alert("Data Added successfully to your "+ UserCreds.email+" profile");
+                window.location.reload();
+            })
+        })
+    </script>
+</body>
+</html>

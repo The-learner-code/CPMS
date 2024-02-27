@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- === Providing the Title for the project === -->
+    <title>CPMS - Update Notification</title>
+    <!-- === Importing CSS File === -->
+    <link rel="stylesheet" href="/src/CSS/UpdateNotification.css">
+    <!-- === Importing JS File === -->
+    <script src="https://kit.fontawesome.com/228a6ce4bd.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="BackToHome">
+            <p>Update Notification</p>
+            <a href="/src/HTML/AdminIndexPage.html">Back to Solutions Suite</a>
+        </div>
+        <div class="form-box">
+            <form>
+                <div class="input-group">
+                    <div class="input-field">
+                        <i class="fa-solid fa-tags"></i>
+                        <input type="text" placeholder="CompanyName/Event" id="Company_Name" autocomplete="off">
+                    </div>
+                    <div class="input-field">
+                        <i class="fa-solid fa-people-group"></i>
+                        <input type="text" placeholder="EligibleDepartments" id="Eligible_Departments" autocomplete="off">
+                    </div>
+                    <div class="input-field">
+                        <i class="fa-solid fa-link"></i>
+                        <input type="text" placeholder="Link" id="input_link" autocomplete="off">
+                    </div>
+                    <div class="input-field">
+                        <i class="fa-solid fa-check"></i>
+                        <input type="text" placeholder="ValidTill" id="Valid_Till" autocomplete="off">
+                    </div>
+                </div>
+                <div class="btn-field">
+                    <button id="addbtn">Add Notification</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script type="module">
+
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getFirestore, addDoc, collection } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCmtr4RFpRZb6S6VV3rpdCGDdFLzAbHDMw",
+            authDomain: "cpms-fca1e.firebaseapp.com",
+            projectId: "cpms-fca1e",
+            storageBucket: "cpms-fca1e.appspot.com",
+            messagingSenderId: "763343437611",
+            appId: "1:763343437611:web:09cc7394b3d9c99389cf6e"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // Assigining the value to the variables
+        let Company_Name = document.getElementById("Company_Name");
+        let Eligible_Departments = document.getElementById("Eligible_Departments");
+        let input_link = document.getElementById("input_link");
+        let Valid_Till = document.getElementById("Valid_Till");
+
+        const docRef = collection(db, "NotificationInfo");
+
+        const AddingDoc = document.getElementById('addbtn')
+        AddingDoc.addEventListener('click', (e) => {
+            e.preventDefault()
+
+            if((Company_Name.value.trim()==="" || Company_Name.value.trim()=== " ")){
+                alert("Company Name should not be Empty or Blank...!")
+                window.location.reload();
+            }
+            else if(Eligible_Departments.value.trim()==="" || Eligible_Departments.value.trim()=== " "){
+                alert("Eligible Departments should not be Empty or Blank...!");
+                window.location.reload();
+            }
+            else if(input_link.value.trim()==="" || input_link.value.trim()=== " "){
+                alert("Link should not be Empty or Blank...!");
+                window.location.reload();
+            }
+            else if(Valid_Till.value.trim()==="" || Valid_Till.value.trim()=== " "){
+                alert("ValidTill should not be Empty or Blank...!");
+                window.location.reload();
+            }
+            else 
+            addDoc(docRef,{
+                CompanyName: Company_Name.value,
+                EligibleDepartments: Eligible_Departments.value,
+                Link: input_link.value,
+                ValidTill: Valid_Till.value,
+            })
+            .then(() => {
+                alert("Data Added successfully");
+                window.location.reload();
+            })
+        })
+    </script>
+</body>
+</html>

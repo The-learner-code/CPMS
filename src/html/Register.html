@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CPMS - Register</title>
+    <link rel="stylesheet" href="/src/CSS/Register.css">
+    <script type="module" src="/src/JS/RegisterValidation.js" defer></script>
+    <script src="https://kit.fontawesome.com/228a6ce4bd.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="BackToHome">
+            <a href="/src/HTML/HomePage.html">Back to Home</a>
+        </div>
+        <div class="form-box">
+            <h1 >Account Creation</h1>
+            <form>
+                <div class="input-group">
+                    <div class="input-field">
+                        <i class="fa-solid fa-envelope"></i>
+                        <input type="email" placeholder="Email" id="RegisterEmail" required autocomplete="off">
+                    </div>
+                    <div class="input-field">
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" placeholder="Password" id="RegisterPassword" required>
+                    </div>
+                    <div class="input-field">
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" placeholder="Conform Password" id="RegisterConfromPassword" required>
+                    </div>
+                </div>
+                <div class="btn-field">
+                    <button type="submit" id="RegisterBtn">Register</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

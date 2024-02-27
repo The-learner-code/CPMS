@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- === Providing the Title for the project === -->
+    <title>CPMS - View Student Profile</title>
+    <!-- === Importing CSS File === -->
+    <link rel="stylesheet" href="/src/CSS/ViewStudentProfile.css">
+    <script src="https://kit.fontawesome.com/228a6ce4bd.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="BackToHome">
+            <p>Student Profile</p>
+            <a href="/src/HTML/AdminIndexPage.html">Back to Solutions Suite</a>
+        </div>
+        <div class="form-box">
+            <form>
+                <div class="input-group">
+                    <div class="input-field">
+                        <i class="fa-solid fa-envelope"></i>
+                        <input type="text" placeholder="Email Id" id="email_id">
+                    </div>
+                    <div class="btn-field">
+                        <button id="viewbtn">View Details</button>
+                    </div>
+                    <div class="input-field">
+                        <i class="fa-solid fa-registered"></i>
+                        <p id="Register_No"></p>
+                    </div>
+                    <div class="input-field">
+                        <i class="fa-solid fa-user"></i>
+                        <p id="Name"></p>
+                    </div>
+                    <div class="input-field">
+                        <i class="fa-solid fa-layer-group"></i>
+                        <p id="Batch"></p>
+                    </div>
+                    <div class="input-field">
+                        <i class="fa-solid fa-people-group"></i>
+                        <p id="Department"></p>
+                    </div>
+                    <div class="input-field">
+                        <i class="fa-solid fa-book-open-reader"></i>
+                        <p id="Pursusing_Semester"></p>
+                    </div>
+                    <div class="input-field">
+                        <i class="fa-solid fa-user-graduate"></i>
+                        <p id="CGPA"></p>
+                    </div>
+                    <div class="input-field">
+                        <i class="fa-solid fa-bookmark"></i>
+                        <p id="Placement_Status"></p>
+                    </div>
+                </div>
+                
+            </form>
+        </div>
+    </div>
+    <script type="module">
+
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCmtr4RFpRZb6S6VV3rpdCGDdFLzAbHDMw",
+            authDomain: "cpms-fca1e.firebaseapp.com",
+            projectId: "cpms-fca1e",
+            storageBucket: "cpms-fca1e.appspot.com",
+            messagingSenderId: "763343437611",
+            appId: "1:763343437611:web:09cc7394b3d9c99389cf6e"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        let Email_id = document.getElementById("email_id");
+
+        const validateEmail = (email) => {
+            return String(email)
+            .toLowerCase()
+            .match(
+                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            );
+        };
+
+        const View_Button = document.getElementById('viewbtn')
+        View_Button.addEventListener('click', (e) => {
+            e.preventDefault()
+
+        if(!validateEmail(Email_id.value.trim()) || Email_id.value.trim()==="" || Email_id.value.trim()=== " "){
+                alert("Please enter valid Email_id...!");
+                window.location.reload();
+            }
+        else{
+            const docRef = doc(db, "StudentsInformation", email_id.value);
+
+            async function ViewDoc(){
+                const docSnap = await getDoc(docRef)
+                if(docSnap.exists()){
+                    Register_No.innerText = `Register No : ${docSnap.data().RegisterNo}`;
+                    Name.innerText = `Name : ${docSnap.data().Name}`;
+                    Batch.innerText = `Batch : ${docSnap.data().Batch}`;
+                    Department.innerText = `Department : ${docSnap.data().Department}`;
+                    Pursusing_Semester.innerText = `Pursusing_Semester : ${docSnap.data().PursusingSemester}`;
+                    CGPA.innerText = `CGPA : ${docSnap.data().CGPA}`;
+                    Placement_Status.innerText = `Placement_Status : ${docSnap.data().PlacementStatus}`;
+                    }
+                    else{
+                        alert("Failed to load Data, Please Update Data...!")
+                }
+            }
+            View_Button.addEventListener("click", ViewDoc())
+        }
+    })
+    </script>
+</body>
+</html>
