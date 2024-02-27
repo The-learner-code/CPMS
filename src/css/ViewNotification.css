@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Open+Sans&family=Oswald&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
+}
+.container{
+    justify-content: center;
+    background-image: linear-gradient(rgba(0, 0, 50, 0.8),rgba(0,0,50,0.8)), url(/components/Login-SignUp.png);
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    width: 100%;
+    min-height: 150vh;
+}
+.BackToHome{
+    display: flex;
+    overflow: hidden;
+    color: #fff;
+    padding-top: 20px;
+    padding-left: 60px;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 22px;
+}
+.BackToHome a{
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    padding-right: 80px;
+    font-family: 'Open Sans', sans-serif;
+}
+.notificationContainer{
+    background-color: #fff;
+    width: 1470px;
+    margin: 18px;
+    padding: 14px 14px;
+    border-radius: 14px;
+}
+ul{
+    align-items: center;
+    border-radius: 14px;
+    margin-bottom: 15px;
+    background-color: #CCCCFF;
+    list-style-type: none;
+    padding: 15px;
+}
+li{
+    font-size: 18px;
+    padding: 10px;
+}
+li:nth-child(even){
+    padding: 10px;
+}
+li span{
+    display: block;
+}
+li span:nth-child(2){
+    font-size: 18px;
+}

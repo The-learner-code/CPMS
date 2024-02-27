@@ -1,0 +1,56 @@
+/* ===== Google Font Import - PoUserLoginformsins ===== */
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Open+Sans&family=Oswald&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
+}
+body{
+    min-height: 100vh;
+    width: 100%;
+    background-color: #E1EBEE;
+}
+nav{
+    display: flex;
+    padding: 25px 100px;
+    width: 1500px;
+    justify-content: space-between;
+    align-items: center;
+}
+.text{
+    font-size: 22px;
+    font-weight: 550;
+    font-family: 'Oswald', sans-serif;
+}
+select{
+    text-align: center;
+    outline: none;
+    border: none;
+    background: none;
+    height: 30px;
+    width: auto;
+    font-size: 16px;
+    font-weight: 600;
+}
+select:hover{
+    border-radius: 10px;
+    background-color: #CCCCFF;
+}
+img{
+    display: block;
+    margin: auto;
+    border-radius: 50px;
+}
+.home-text{
+    padding-top: 30px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 550;
+}
+.contact{
+    padding-top: 30px;
+    text-align: center;
+    font-weight: 500;
+}

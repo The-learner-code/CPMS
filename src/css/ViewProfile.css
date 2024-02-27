@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Open+Sans&family=Oswald&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
+}
+.container{
+    width: 100%;
+    background-image: linear-gradient(rgba(0, 0, 50, 0.8),rgba(0,0,50,0.8)), url(/components/Login-SignUp.png);
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    font-size: 22px;
+}
+.BackToHome{
+    display: flex;
+    overflow: hidden;
+    color: #fff;
+    padding: 20px 50px;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+}
+.BackToHome a{
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    font-family: 'Open Sans', sans-serif;
+}
+.form-box{
+    width: 1500px;
+    position: absolute;
+    background: #fff;
+    padding: 10px 20px 30px;
+    text-align: center;
+}
+.input-field{
+    background: #eaeaea;
+    margin: 15px 15px;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+}
+.form-box p{
+    width: 100%;
+    background: transparent;
+    padding: 18px 18px;
+    font-size: 16px;
+    text-align: left;
+}
+.input-field i{
+    margin-left: 15px;
+}
+
+
